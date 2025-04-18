@@ -29,7 +29,9 @@
     "diagram"
   ],
   "homepage": "https://github.com/sieveLau/hexo-tag-mermaid",
-  "dependencies": {},
+  "dependencies": {
+    "hexo-util": "^3.3.0"
+  },
   "peerDependencies": {
     "hexo": ">=6.0.0"
   }
