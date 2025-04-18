@@ -1,34 +1,36 @@
 {
-  "name": "hexo-tag-gantt",
+  "name": "hexo-tag-mermaid",
   "version": "1.0.0",
-  "description": "hexo tag gantt",
+  "description": "A Hexo tag plugin to render mermaid.js diagrams on the client side",
   "author": {
     "name": "threeq",
     "email": "448987046@qq.com",
     "url": "http://threeq.github.io/"
   },
+  "maintainers": [
+    {
+      "name": "sievelau",
+      "email": "sievelau@gmail.com"
+    }
+  ],
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/threeq/hexo-tag-gantt.git"
+    "url": "https://github.com/sieveLau/hexo-tag-mermaid.git"
   },
   "bugs": {
-    "url": "https://github.com/threeq/hexo-tag-gantt/issues"
+    "url": "https://github.com/threeq/hexo-tag-mermaid/issues"
   },
   "readmeFilename": "README.md",
   "keywords": [
+    "hexo",
     "tag",
-    "gantt",
-    "hexo"
+    "mermaid",
+    "diagram"
   ],
-  "homepage": "http://threeq.github.io//hexo-tag-gantt",
-  "_id": "hexo-tag-gantt@1.0.0",
-  "_from": "hexo-tag-gantt@",
-  "dependencies": {
-    "bluebird": "^2.10.2",
-    "hexo-fs": "^0.1.4",
-    "hexo-tag-bootstrap": "0.0.8",
-    "mermaid": "^0.5.5",
-    "phantomjs": "^1.9.18"
+  "homepage": "https://github.com/sieveLau/hexo-tag-mermaid",
+  "dependencies": {},
+  "peerDependencies": {
+    "hexo": ">=6.0.0"
   }
 }
