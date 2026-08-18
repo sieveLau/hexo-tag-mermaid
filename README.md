@@ -1,73 +1,81 @@
 # hexo-tag-mermaid
-hexo mermaid插件
 
-依赖 [mermaid](http://knsv.github.io/mermaid) 库
+A [Hexo](https://hexo.io/) tag plugin that renders [mermaid.js](https://mermaid.js.org/) diagrams on the **client side**.
 
-### hexo-tag-gantt 安装
+The plugin turns a `{% mermaid %}` block into a `<div class="mermaid">` containing the diagram source (HTML-escaped). Rendering happens in the browser via your theme's mermaid.js setup, so no phantomjs or server-side rendering is required.
+
+## Requirements
+
+- Hexo >= 6 (`peerDependencies`)
+- A theme that loads mermaid.js and initializes it with `startOnLoad: true`
+
+## Installation
+
+Install the tarball (or the repository) into your Hexo site:
 
 ```bash
-npm install https://github.com/threeq/hexo-tag-mermaid.git --save
+# from a clone of this repo, build the tarball
+npm pack --ignore-scripts      # -> hexo-tag-mermaid-<version>.tgz
+
+# in your Hexo site
+npm install ./hexo-tag-mermaid-<version>.tgz --save
 ```
 
-### 实例
+Then add mermaid.js to your theme (e.g. in `themes/<your-theme>/layout/layout.ejs`):
 
-#### 流程图
+```html
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
+```
 
-```language
-{% mermaid flow 流程图 1 %}
-    subgraph one
-        a1-->a2
-    end
-    subgraph two
-        b1-->b2
-    end
-    subgraph three
-        c1-->c2
-    end
-    c1-->a2
+## Usage
+
+Wrap any mermaid diagram in a `{% mermaid %}` block. The tag takes no arguments — every diagram type is written as plain mermaid source.
+
+### Flowchart
+
+```
+{% mermaid %}
+flowchart TD
+    A[Client] --> B[Load Balancer]
+    B --> C[Server1]
+    B --> D[Server2]
 {% endmermaid %}
 ```
 
-```language
-{% mermaid flow 流程图 2 %}
-    B["fa:fa-twitter for peace"]
-    B-->C[fa:fa-ban forbidden]
-    B-->D(fa:fa-spinner);
-    B-->E(A fa:fa-camera-retro perhaps?);
+### Sequence diagram
+
+```
+{% mermaid %}
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
 {% endmermaid %}
 ```
 
-#### 时序图
-```language
-{% mermaid sequence 时序图 %}
-    Alice->>Bob: Hello Bob, how are you?
-    alt is sick
-        Bob->>Alice: Not so good :(
-    else is well
-        Bob->>Alice: Feeling fresh like a daisy
-    end
-    opt Extra response
-        Bob->>Alice: Thanks for asking
-    end
+### Gantt chart
+
+```
+{% mermaid %}
+gantt
+    title A Gantt Diagram
+    section Section
+        A task           :a1, 2024-01-01, 30d
+        Another task     :after a1, 20d
 {% endmermaid %}
 ```
 
-时序图建议使用[hexo-tag-plantuml](https://github.com/threeq/hexo-tag-plantuml)。里面还有更多的UML图形
+## Special characters
 
-#### 甘特图
-```language
-{% mermaid gantt 测试甘特图 %}
-    section section 1
-    A task           :a1, 2014-01-01, 30d
-    Another task     :after a1  , 20d
-    section section 2
-    Task in sec      :2014-01-12  , 12d
-    anther task      : 24d
-{% endmermaid %}
+Diagram source is HTML-escaped when emitted, so characters like `<`, `>`, `&` and `&quot;` write naturally; mermaid.js reads them back from the element's text content.
+
+## Development
+
+```bash
+npm install
+npm test
 ```
 
-[效果图](http://threeq.me/2015/10/22/hexo-tag-gantt/)
-
-### 语法
-
-[语法信息参考mermaid](http://knsv.github.io/mermaid/#syntax35)
+The test suite (`test/index.test.js`) runs with zero extra dependencies using Node's built-in test runner.

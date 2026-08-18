@@ -1,6 +1,6 @@
 {
   "name": "hexo-tag-mermaid",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A Hexo tag plugin to render mermaid.js diagrams on the client side",
   "author": {
     "name": "threeq",
@@ -19,7 +19,7 @@
     "url": "https://github.com/sieveLau/hexo-tag-mermaid.git"
   },
   "bugs": {
-    "url": "https://github.com/threeq/hexo-tag-mermaid/issues"
+    "url": "https://github.com/sieveLau/hexo-tag-mermaid/issues"
   },
   "readmeFilename": "README.md",
   "keywords": [
@@ -29,8 +29,14 @@
     "diagram"
   ],
   "homepage": "https://github.com/sieveLau/hexo-tag-mermaid",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
   "dependencies": {
-    "hexo-util": "^3.3.0"
+    "hexo-util": "3.3.0"
   },
   "peerDependencies": {
     "hexo": ">=6.0.0"
